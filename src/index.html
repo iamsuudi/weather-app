@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Weather App</title>
+    </head>
+    <body class="min-h-screen flex flex-col justify-center items-center">
+
+        <header class="h-72 max-w-sm flex flex-col justify-center items-center">
+            
+            <h2 class="w-96 text-center text-xl font-black text-slate-500 bg-opacity-50 rounded-xl p-5 mb-10">CHECK CURRENT WEATHER OF YOUR CITY</h2>
+            
+            <form action="post" class="w-full h-10 flex justify-center">
+                <input type="text" id="city" name="city" placeholder="Enter your city" class="bg-white bg-opacity-90 px-5 py-1 h-10 outline-none rounded-s-lg align-middle">
+                <input type="submit" value="" class="search w-10 h-10 rounded-e-lg">
+            </form>
+
+        </header>
+        
+        <main class="h-fit max-w-xl text-white flex flex-wrap justify-center items-center gap-10">
+            
+            <section class="location w-72 bg-black bg-opacity-50">
+                
+                <h3 class="flex py-3 px-5 border-b-2 border-gray-500">Current Weather <span class="time ml-auto">2:49 PM</span></h3>
+                
+                <div class="mt-5 p-5 flex gap-3">
+                    <div class="icon w-24 h-24 "></div>
+
+                    <div>
+                        <p class="temp text-5xl">24<span clas="flex flex-col"><sup>o</sup><sub>c</sub></span>
+                        </p>
+                        <p class="text mt-5">Partly Sunny</p>
+                    </div>
+                </div>
+                
+                <p class="p-5">Addis Abeba, Ethiopia</p>
+            </section>
+            
+            <section class="wind w-72 bg-black bg-opacity-50">
+                
+                <h3 class="flex py-3 px-5 border-b-2 border-gray-500">Wind Condition</h3>
+                
+                <div class="my-5 p-5 flex items-center gap-5">
+                    
+                    <div class="wind-icon w-24 h-24"></div>
+                    
+                    <div class="flex flex-col gap-3 text-sm">
+                        <p class=""><span class="text-gray-400">Wind Speed</span> <span class="wind-kph text-white">24</span> kph</p>
+                        <p class=""><span class="text-gray-400">Wind Degree</span> <span clas="wind-degree">N</span></p>
+                        <p class=""><span class="text-gray-400">Wind Direction</span> <span clas="wind-dir">N</span></p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="humidity w-72 bg-black bg-opacity-50">
+
+                <h3 class="flex py-3 px-5 border-b-2 border-gray-500">Humidity Condition</h3>
+                
+                <div class="my-5 p-5 flex items-center gap-5">
+                    
+                    <div class="humidity-icon w-24 h-24"></div>
+
+                    <div class="flex flex-col gap-3 text-sm">
+                        <p class="precip"><span class=" text-gray-400">Precipitation</span> <span class="precip_mm">24</span> mm</p>
+                        <p class="humidity"><span class="text-gray-400">Humidity</span> <span clas="humidity">N</span></p>
+                        <p class="cloud"><span class="text-gray-400">Cloud</span> <span clas="cloud">N</span></p>
+                        <p class="uv"><span class="text-gray-400">UV</span> <span clas="uv">N</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="mt-auto p-2 pt-20 text-xs text-white">Developed by <a href="#" class="underline underline-offset-2 ">Abdulfetah</a> &copy;. All rights reserved.</footer>
+    </body>
+</html>
