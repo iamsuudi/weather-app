@@ -1,12 +1,4 @@
-
-function renderCurrentWeather(
-    temp_c,
-    text,
-    icon,
-    localtime,
-    city,
-    country
-) {
+function renderCurrentWeather(temp_c, text, icon, localtime, city, country) {
     const temp = document.querySelector('span.temp');
     const weatheIcon = document.querySelector('.icon');
     const location = document.querySelector('p.location');
@@ -15,7 +7,9 @@ function renderCurrentWeather(
 
     const time = localtime.split(' ').pop().split(':');
     const timeLocal =
-        +time[0] < 12 ? `${time.join(':')} AM` : `${+time[0] - 12}:${time[1]} PM`;
+        +time[0] < 12
+            ? `${time.join(':')} AM`
+            : `${+time[0] - 12}:${time[1]} PM`;
 
     temp.textContent = temp_c;
     weatheIcon.style.backgroundImage = `url(${icon})`;
@@ -48,36 +42,61 @@ function renderHumidity(precip_mm, humi, clo, u) {
 }
 
 async function getWeather(city) {
-
     const apiKey = '45591ccca56b4ddf865170037242401';
-    
+
     const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;
 
     const response = await fetch(url, { mode: 'cors' });
-    const parsed = await response.json();
 
-    const { location, current } = parsed;
+    const section1 = document.querySelector('section.location');
+    const section2 = document.querySelector('section.wind');
+    const section3 = document.querySelector('section.humidity');
 
-    const { localtime, country } = location;
+    if (response.status === 200) {
+        const parsed = await response.json();
+        console.log(parsed);
 
-    const { condition } = current;
+        const { location, current } = parsed;
 
-    const { icon, text } = condition;
+        const { localtime, country } = location;
 
-    const {
-        wind_kph,
-        wind_degree,
-        wind_dir,
-        precip_mm,
-        humidity,
-        cloud,
-        uv,
-        temp_c,
-    } = current;
+        const { condition } = current;
 
-    renderCurrentWeather(temp_c, text, icon, localtime, city, country);
-    renderCurrentWind(wind_kph, wind_degree, wind_dir);
-    renderHumidity(precip_mm, humidity, cloud, uv);
+        const { icon, text } = condition;
+
+        const {
+            wind_kph,
+            wind_degree,
+            wind_dir,
+            precip_mm,
+            humidity,
+            cloud,
+            uv,
+            temp_c,
+        } = current;
+
+        renderCurrentWeather(temp_c, text, icon, localtime, city, country);
+        renderCurrentWind(wind_kph, wind_degree, wind_dir);
+        renderHumidity(precip_mm, humidity, cloud, uv);
+
+        if (section1.classList.contains('hidden'))
+            section1.classList.remove('hidden');
+        if (section2.classList.contains('hidden'))
+            section2.classList.remove('hidden');
+        if (section3.classList.contains('hidden'))
+            section3.classList.remove('hidden');
+
+    } else {
+
+        if (!section1.classList.contains('hidden'))
+            section1.classList.add('hidden');
+        if (!section2.classList.contains('hidden'))
+            section2.classList.add('hidden');
+        if (!section3.classList.contains('hidden'))
+            section3.classList.add('hidden');
+
+        return '';
+    }
 }
 
 export default getWeather;
