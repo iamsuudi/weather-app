@@ -16,4 +16,5 @@ searchBtn.addEventListener('click', e =>
     getWeather(city);
 })})
 
-
+const dialog = document.querySelector('dialog');
+dialog.showModal();

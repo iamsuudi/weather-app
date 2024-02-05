@@ -42,7 +42,7 @@ function renderHumidity(precip_mm, humi, clo, u) {
 }
 
 async function getWeather(city) {
-    const apiKey = '45591ccca56b4ddf865170037242401';
+    const apiKey = '';
 
     const url = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&aqi=yes`;
 
